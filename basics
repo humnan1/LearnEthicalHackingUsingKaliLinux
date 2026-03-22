@@ -69,6 +69,50 @@ Number  Permissions   Totals
 6        rw-          4+2+0
 7        rwx          4+2+1
 
+sudo adduser pip
+
+
+shadow file has passwoor
+sudo cat /etc/shadow
+
+sudo cat /etc/sudoers
+
+
+
+┌──(kali㉿kali)-[~]
+└─$ echo 'hello again' > hey.txt
+
+┌──(kali㉿kali)-[~]
+└─$ cat hey.txt
+hello again
+
+┌──(kali㉿kali)-[~]
+└─$ echo 'hello again again' >> hey.txt
+
+┌──(kali㉿kali)-[~]
+└─$ cat hey.txt
+hello again
+hello again again
+
+
+
+
+grep 'sudo' /etc/group  #who has the sudo privelage
+
+ip a
+ifconfig  #only shwos ethernet connections
+iwconfig #wireless connectins
+ip n #ip neighbour
+arp -a #address resolutoj protocol
+ip r #ip route  or
+route
+
+touch newfile.txt
+ls
+cat newfile.txt
+nano newfile.txt
+mousepad newfile.txt
+
 
 
 ~ is the kali home folder
