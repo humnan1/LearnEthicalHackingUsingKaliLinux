@@ -1,0 +1,25 @@
+//Uisng virtual machines VMware
+//username is  kali -> password is kali
+//open terminal and change password, by typign passwd 
+//Passwird is (usual)
+//linux built in notekeeping application: 
+pwd command: print working directory, shows me where i am 
+cd = chnage directorty. hit tab twice and you can see where you ca change into
+then you can do cd Desktop/ fr example, and move tp there. now we are in desktop
+to go back a directory, cd .. and now we are back to originalc (~)
+cd .. again and it now says /homepwd
+ls functionto see whats in our folder
+
+cd home/   and ls (folder might be empty)
+
+we can also do cd fromoutside the foldert hat we are in
+
+make directory: mkdir  new 
+our eprsonal working directory, we can make new folders here
+
+code
+home/kali
+
+bash
+cd/home/kali
+c
