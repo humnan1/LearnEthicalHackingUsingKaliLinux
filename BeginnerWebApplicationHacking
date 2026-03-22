@@ -1,0 +1,13 @@
+five stages of hacking
+- reconnaissance, information gathering, mostly passive
+- Scanning and enumeration
+- Gaining access
+- mainatining access
+- Covering tracks
+
+Reconnaisance:
+  Passive recon web/host->
+    Target Validation: WHOIS, nslookup, dnsrecon
+    Finding Subdomains: GoogleFu, dig, Nmap, Sunlist3r, Bluto, crt.sh, etc
+    Fingerprinting: Nmap, Wappalyzer, WhatWeb, BuiltWith, Netccat
+    Data Breaches: HaveIBeenPwned and simlar lists
