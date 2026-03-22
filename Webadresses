@@ -1,0 +1,26 @@
+Ip addresses
+   represent where you live o the internet
+  needed to send meesagesto network
+  unique series of numbers, four numbers separated by dots e.g. 192.168.1.1
+  NAT = network address translation, translates private IP into public and back 
+  identifies the host or netowrk interfaceamd provides the location 
+  Two man types of IP addresses, IPv4 and IPv6
+  IPV4 e.g 192.168.1.1   32 bit numerical labels written in decimal format, each octet can vary from 0-255. the first three octets are the network portions and the last octet is the host portion.
+  IPv6 e.g. 2001:db8:0:1234:0:567:8:1  128 bit alpha numeric labels in hexadecimal format, and more efficient, each group can represent a value from 0000 to FFFF
+  Private IP address usually starts with 192, used withing local network and not routable on the internet 
+  Public IP address is assigned by internet service provider and is unique across internet allowign communication and routable on the internet
+  Static IP addresses are fixed and do notchange over time, 
+  Dynamic IP addresses are automatically assigned by a network when a device connects and can change over time and managed by the dynamic host configuration           protocol (DHCP) , more cost effective and effiecnt for isps.
+  ipconfig on command promot gives the ip address
+
+Subnet mask
+  Also have 4 gorups of numbers separated by 3 dots e.g. 255.255.255.0 (4 octets), when the first octet is 255 in 192, then in the ipv4 address it will alsways be 192.168.1 and another number at the end in our network (home). The 0 at the end of the subnet mask tells us that the last number of the ipv4 can be anything between 0-255. to add another subnet maks with anothe rip address -> 255.255.254.0
+  
+Default Gateway e.g. 192.168.1.1, the router, send emssages outside of the network, must be sent to router. There are always two ip addresses that cant be used in agven network, that is the first ip address (netwrok address) e.g. 192.168.1.0, and the last IP address e.g. 192.168.1.255 (broadcast address), and the router IP address (Defailt gateway) alsontakes up an IP adress so 3 IP adressess less than 256.
+
+The modem is the device that actually brings the interne tinto the home. Stands for modulator demodulator. Internet provider sends data through cables phone lines or fibre optics, and computers uses binary, modem translates. When data comes from the ISP, the modem demodulates it, making analogs signals into digital data, when you send dta back to the internet, the modem modulates it converting digital data into analog signals.
+The router manages traffic, it takes the internet connection from the modem and shares it to the devices. The router creates a local area netwrok (LAN), , which assigns each local device a local IP address and keeps track of which device is which, and the router directs the right data to the right device. The router uses routing tables to figure out the fastest path, and uses NAT so the different devices in a local can share on public IP address. many modems and routers are combined.
+The switch connects multiple wired devices within your network. Switch has anywehre from 5 to 48 ethernet ports.  The switch maintains a MAC address table, it knows which devices are plugged into which ports, when data comes it the switch doesnt broadcast it to everyone, it looks at the destination MAC addressand sends the data only to the correct port, so every device gets dedicated bandwidth. Switches operate at band 2 of the network model, they dont assign IP address like the router, they just cnnect devices within the same network and make sure data gets to the right place.
+Access point, or WAP, wireless access point, creates wifi coverage from a wired network connection. connect access point to the router by an eithernet cable and teh access point then broadcasts the wifi signal letting wireless devices like phones connect to the network. Access points dnt route trafic or assign IP addresses.
+Firewall is the networks security guards, it sits between the network and the internet, and decides what traic gets in and what gets blocked. Evevry packet of information from the internet has information like where it is coming from  and where its going, what port its using ad what protocol, the firewall inspects all of this and compares every packet against a set of security rules, unorthorised access attempts, suspicious, known malicious IP addresses, wierd prot scanning activity get blocked before reaching devices. Hardware firewalls are physical devices put between the modem and the rotuer, software firwwalls run on indidual computers, they control what specific apps can do  n the network. 
+NIC, Network interface card, the actual hardware that physicallly connects your device to a network , every compuetr and devce has onem to send digital binary data over the internet it needs to be converted to electric signals or radiowaves, the NIC is the translator, they each have a unique MAC address bruned into it, this is how networks identifiy individual devices.
