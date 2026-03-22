@@ -15,11 +15,70 @@ cd home/   and ls (folder might be empty)
 we can also do cd fromoutside the foldert hat we are in
 
 make directory: mkdir  new 
-our eprsonal working directory, we can make new folders here
+our eprsonal working directory, we can make new folders here (home is usually owned by roots os cant make it there)
 
+removeing a directory rmdir nameoffile/
 code
 home/kali
 
+
+sudo if blocked
+
+cd/home/kali
+
+sudo su -   # swithc user to root
+
+
+echo 'Hi'  #works kind of like print
+
+echo 'Hi' > test.txt  #puts it here makes this file
+cat test.txt #prints hi out again
+cp test.txt Downloads #copies it into downlaods
+rm Downloads/test.txt remove 
+mv test.txt Downloads #completely moves itnto downloads
+locate test.txt #this gave me some rubbish
+updatedb #my permission was denied
+sudo updatedb #try as sudo
+locate test.txt  #first senetnce gave it to me
+
+Up arrow key shows me all of my perevious commands
+
+
+ls -la
+The first column  tells us whether we are looking at afile or a directory e.g drwxr-xr-x
+if there is a d it is a directroy (alos colour coded) . rwx is read write execute, it could be missing (-rw-). thirsd colums shows the owener of the file, e.g. kali. 4th, fifth and 6th values of the first colum (r-x for example) shows what the owner can do to this file, e.g. in this one kali can read and execute but cannot wrtie, and the last three values are for what all other users can do, for this example, the last three are also r-x so all other useers can read, and execute.
+
+echo 'Hello' > hello.txt
+ls -la/   # --> -rw-rw-r--   we do not have execute eprmission
+clear screen
+chmod +rwx hello.txt #change mode, adds rwx
+ls -la   # it is now -rwxrwxr-x
+or use
+chmod 777 hello.txt
+ls -la  # it is now -rwxrwxrwx  
+
+777 is rwx permissions beause (this is a table):
+
+Number  Permissions   Totals
+0        ---          0+0+0
+1        --x          0+0+1
+2        -w-          0+2+0
+3        -wx          0+2+1
+4        r--          4+0+0
+5        r-x          4+0+1
+6        rw-          4+2+0
+7        rwx          4+2+1
+
+
+
+~ is the kali home folder
 bash
 cd/home/kali
-c
+
+man ls  # manual
+clear screen ctrl L
+
+ls --help
+
+
+ls -la    # list directories using a long listing format and does not ignore hidden entried starting with a .
