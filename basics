@@ -10,6 +10,17 @@ to go back a directory, cd .. and now we are back to originalc (~)
 cd .. again and it now says /homepwd
 ls functionto see whats in our folder
 
+
+Linux is fre eopen source software licensed under Generalr public licens e. Operating system kernal writeen in C. Sits between software applications and hardware. when on, the bootloader, will load the kernel into random access memory (RAM), from there it detects hrdware and starts the init system  which is usually a tool called systemd once initialised the kernel will start up applications in user space which will usually bring the user to a login screen . the kernel allocates and dealocates memmory fro processes and creates virtual memory to use more memory than is physically available by tapping into the harddrive, The kernel also provides a digital file system to interact with files on differen systems  the fourth extended file system is the most common default on linux (ext4) but not the only. The kernel also interacts with these devices by drivers. The kernel is surrounded by the CPU's protection ring .  The terminal is a graphical user interface used to send commands via the shell, which privdes a layer of protection to the kernel under the user space. the most common shell is bash. 
+
+whoami: there is a special user with a userid (UID) of 0 called root  and they have the highest level of privelage , swithc using su, or prefix something with sudo to run it with elevated privelage. 
+By default we are in our home directory, . cd / and then ls and then you will find a lot of directories . boot contains the linux kernel itself , dev contains external devices like hardrives, etc contains config files and var contains log files, bin holds binaries and sbin hold system binaries 
+
+
+
+
+
+
 cd home/   and ls (folder might be empty)
 
 we can also do cd fromoutside the foldert hat we are in
