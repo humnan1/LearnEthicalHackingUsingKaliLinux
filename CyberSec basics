@@ -1,0 +1,8 @@
+Hashing -> taking a passowrd or value as input and converting it into a hash value, 
+Dictionary attacks -> run each values/ word into the hash function and get output values and compare eahc one against database of stolen hash values. 
+Brute-Force attacks try as many combinations as possible.
+Salting -> modifies inout so there is an extra value, which changes the output so that two ofg the same inputs now have the same output and can be differentiated from one another
+One way hash functions -. mathematical functions written i code that take as input a string of arbitrary length and output a hash value of fixed length. May noy be able to reversibly reversed. 
+Crypotgraphic hash functions -> secured
+encode: plaintext -> codetext
+ciphers 
