@@ -1,0 +1,88 @@
+Bandit 
+
+Level 0
+Terminal -> 
+ssh bandit0@bandit.labs.overthewire.org -p 2220
+# this ssh opens the machine, i used -p 2220 to add the port number
+*system asks for password*
+bandit0
+
+ls
+*read me file appears*
+#i open it with
+cat readme 
+
+#Password for level one: ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If
+
+
+Level 1
+The password for the next level is stored in a file called - located in the home directory
+
+ssh bandit1@bandit.labs.overthewire.org -p 2220
+
+#Tried to do ls /home  and it cam up with a bnch of directories
+#tried cd /home we are now in home
+ cd bandit1
+ # -
+#tryying cat - does not work, it is not openeing, because cat tra=eats it as something else, apparently try prefixing the filename with a path
+cat /home/bandit1/-
+
+Password for level 2: 263JGJPfgU6LtdEvgfWU1XP5yac29mFx
+
+
+Level 2
+The password for the next level is stored in a file called --spaces in this filename-- located in the home directory
+
+ssh bandit2@bandit.labs.overthewire.org -p 2220
+
+cd /home
+ls
+cd bandit 2
+ls
+# --spaces in this filename--
+# tried cat and putting filename but cat doesnt recognise it because it has spaces
+# reserach: try using a backlash befor eevry space or wrapping the entire thing with quotes
+cat "--spaces\ in\ this\ filename--"
+#doesnt work
+cat /home/bandit2/"--spaces in this filename--"
+
+password for level 3: MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx
+
+
+Level 3:
+
+The password for the next level is stored in a hidden file in the inhere directory.
+
+cd /home
+ls
+cd bandit3
+ls
+#inhere
+cd inhere
+ls
+#no output
+du
+#8 (file space usage)
+find
+#./...Hiding-From-You     find can find hidden files
+cat ./...Hiding-From-You
+
+password = 2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ
+
+Level 4:
+
+The password for the next level is stored in the only human-readable file in the inhere directory. Tip: if your terminal is messed up, try the “reset” command.
+ssh bandit4@bandit.labs.overthewire.org -p 2220
+
+cd /home
+ls
+cd bandit4
+ls
+#inhere
+cd inhere
+ls
+#bunch of files
+cat /home/bandit4/inhere/-file00
+#jargon, tried all fils until i got to file 7, it opoened and gave me the passwor,d it was the only that had readable characters
+
+password for level 5: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
