@@ -86,3 +86,23 @@ cat /home/bandit4/inhere/-file00
 #jargon, tried all fils until i got to file 7, it opoened and gave me the passwor,d it was the only that had readable characters
 
 password for level 5: 4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw
+
+
+Level 5:
+
+The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+
+human-readable
+1033 bytes in size
+not executable
+
+ssh bandit5@bandit.labs.overthewire.org -p 2220
+
+cd bandit5
+cd inhere
+#loads of directired
+#tryign to cat every single file from all 19 directories 
+ cat /home/bandit5/inhere/maybehere00/"-file1"    etc
+#reserahc about the find command
+find ! -executable
+#I assume thsi tells us which files are not excutable, which is every file 2 and spaces file 2 in every directory
