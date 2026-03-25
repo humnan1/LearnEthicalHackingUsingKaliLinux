@@ -106,3 +106,260 @@ cd inhere
 #reserahc about the find command
 find ! -executable
 #I assume thsi tells us which files are not excutable, which is every file 2 and spaces file 2 in every directory
+#after researhc i found ls -lath, wthis gave me the permissions an file saizses of every file a direcotry
+cd maybehere00
+ls -lath
+#found it in maybehere07 .file2  this was a hidden file and i didnt knwo it existed until i used the full lath (or la) and not just ls 
+
+password for elvel 6: HWasnPhtq9AVKe0dmk45nxy20cvUa6EG
+
+
+
+Level 6
+ssh bandit6@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored somewhere on the server and has all of the following properties:
+
+owned by user bandit7
+owned by group bandit6
+33 bytes in size
+
+#in bandit 6
+ ls -lath
+
+cd /home
+#need to search the whole serve, not just bandit 6 folder
+#tried this 
+find /home -user bandit7
+#realised im still in home
+find -user bandit7 -group bandit6
+#too many files
+find -user bandit7 -group bandit6 2>/dev/null
+#the last part removed all the perission denied files
+
+password found in a file
+morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj
+
+Level 7
+
+ssh bandit7@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt next to the word millionth
+
+cd /home
+cd bandit7
+cat dat.txt
+#This file spent a whole year just spurting out randomcharacters
+#grep looks for patterns and suhc
+grep "millionth" data.txt
+passord: dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc
+
+Level 8
+
+ssh bandit8@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt and is the only line of text that occurs only once
+
+cd/home
+cd bandit8
+#uniq is a suggested command so i assume we use it
+man uniq
+#data is not sorted and uniq ony compares adjacent lines., must sort
+sort data.txt | uniq -u
+
+password: 4CKMh1JI91bUIZZPXDqGanal4xvAg0JM
+
+
+Level 9
+ssh bandit9@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
+strings data.txt
+
+scrolled and found it
+FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey
+
+
+Level 10
+
+ssh bandit10@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt, which contains base64 encoded data
+
+man base64
+base64 -d data.txt
+#base64 can encode or decode test in base64, the -d is the decode 
+
+password for level 11: dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr
+
+Level 11
+
+ssh bandit11@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt, where all lowercase (a-z) and uppercase (A-Z) letters have been rotated by 13 positions
+
+man tr 
+# translate or delet character
+ tr 'A-Za-z' 'N-ZA-Mn-za-m' <<< 'Gur cnffjbeq vf 7k16JArUVv5LxVuJfsSVdbbta
+HGlw9D4'
+#we already know what tr does now, and accordng to my wiki reserahc, thisis how to roate it by 13 spacs, n=14the letter of alphate, and the last part is where i pasted the phrase that was in data.txt
+passowrd: 7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4
+
+Level 12:
+
+ssh bandit12@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in the file data.txt, which is a hexdump of a file that has been repeatedly compressed. For this level it may be useful to create a directory under /tmp in which you can work. Use mkdir with a hard to guess directory name. Or better, use the command “mktemp -d”. Then copy the datafile using cp, and rename it using mv (read the manpages!)
+
+man mktemp
+#temporary file or directory
+
+#this is what i tried
+cp data.txt mktemp -d
+#does not work
+#realised mistak
+mktemp -d
+# output =  /tmp/tmp.BVrnvVIdoe
+cp data.txt /tmp/tmp.BVrnvVIdoe
+
+man mv 
+#move and rename files
+#-T = no tagret direcoty (ony trying to rename)
+#didnt knwo wat tpo rname it as but apparenly the file is compressed to i have to give it the correct extension by renaming it as somethign with .gz on the end
+
+cd /tmp/tmp.BVrnvVIdoe
+
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ gunzip data.txt
+gzip: data.txt: unknown suffix -- ignored
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ man gzip
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ gzip -d data.txt
+gzip: data.txt: unknown suffix -- ignored
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ man gzip
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ mv data.txt data.gz 
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ gunzip data.gz
+
+gzip: data.gz: not in gzip format
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ man gunzip
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ gunzip -S data.gz
+gzip: compressed data not read from a terminal. Use -f to force decompression.
+For help, type: gzip -h
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$ gunzip -f data.gz
+
+gzip: data.gz: not in gzip format
+bandit12@bandit:/tmp/tmp.R6zLVXyzVA$
+
+
+#renamed it back to data.txt but kept in the temp file
+#file data.txt tells me this is ascii and so in hex format, 
+man xxd
+# makes a hex dump or does the reverse
+#using -r reverss it
+
+xxd -r data.txt
+#apparently i need to append it to new fiel called data.bin
+xxd -r data.txt > data.bin
+
+file data.bin
+#data.bin: gzip compressed data, was "data2.bin", last modified: Tue Oct 14 09:26:06 2025, max compression, from Unix, original size modulo 2^32 564
+# dont undertsna dbut i see that soemthif is gzip compressed data so now i want to uncompress
+
+gzip -d data.bin
+
+#apparently it needs to end in suffix .gz, so i renamed it
+#uncompressed it and the file is now called data instead of data.gz which apparentl means its been uncompressed
+
+file data
+
+#it is now bzip2 compressed data so lets try uncompress this again
+
+man bzip2
+#bzip2 -d apparentl decompressd but i need to changethe ending to bz or bz2
+
+#it is now called data again so it has been decompressed
+file data
+
+#it is now gzip compressed data
+
+#it is now called data agaon
+file data
+#now it is posix tar
+#apparently to x=extract a tar -xf data
+#now ive got a data5.bin
+file data5.bin
+#its another tar 
+file data6.bin
+#now its a bzip2
+mv data6.bin daata.bz
+bzip -d daata.bz
+ls
+#daata
+file daata
+#tar again
+#data8.bin is a new file so i assume i use this
+#its a gzip
+# unzipped it 
+file daata
+#its ascii
+cat daata
+
+password = FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn
+
+
+Level 13
+ssh bandit13@bandit.labs.overthewire.org -p 2220
+
+The password for the next level is stored in /etc/bandit_pass/bandit14 and can only be read by user bandit14. For this level, you don’t get the next password, but you get a private SSH key that can be used to log into the next level. Look at the commands that logged you into previous bandit levels, and find out how to use the key for this level.
+
+# for other level s: ssh bandit14@localhost
+
+# i timed out and logged in again
+#whe i logged in i typed ls
+and they gave me a hint
+
+bandit13@bandit:~$ cat sshkey.private
+-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEAxkkOE83W2cOT7IWhFc9aPaaQmQDdgzuXCv+ppZHa++buSkN+
+gg0tcr7Fw8NLGa5+Uzec2rEg0WmeevB13AIoYp0MZyETq46t+jk9puNwZwIt9XgB
+ZufGtZEwWbFWw/vVLNwOXBe4UWStGRWzgPpEeSv5Tb1VjLZIBdGphTIK22Amz6Zb
+ThMsiMnyJafEwJ/T8PQO3myS91vUHEuoOMAzoUID4kN0MEZ3+XahyK0HJVq68KsV
+ObefXG1vvA3GAJ29kxJaqvRfgYnqZryWN7w3CHjNU4c/2Jkp+n8L0SnxaNA+WYA7
+jiPyTF0is8uzMlYQ4l1Lzh/8/MpvhCQF8r22dwIDAQABAoIBAQC6dWBjhyEOzjeA
+J3j/RWmap9M5zfJ/wb2bfidNpwbB8rsJ4sZIDZQ7XuIh4LfygoAQSS+bBw3RXvzE
+pvJt3SmU8hIDuLsCjL1VnBY5pY7Bju8g8aR/3FyjyNAqx/TLfzlLYfOu7i9Jet67
+xAh0tONG/u8FB5I3LAI2Vp6OviwvdWeC4nOxCthldpuPKNLA8rmMMVRTKQ+7T2VS
+nXmwYckKUcUgzoVSpiNZaS0zUDypdpy2+tRH3MQa5kqN1YKjvF8RC47woOYCktsD
+o3FFpGNFec9Taa3Msy+DfQQhHKZFKIL3bJDONtmrVvtYK40/yeU4aZ/HA2DQzwhe
+ol1AfiEhAoGBAOnVjosBkm7sblK+n4IEwPxs8sOmhPnTDUy5WGrpSCrXOmsVIBUf
+laL3ZGLx3xCIwtCnEucB9DvN2HZkupc/h6hTKUYLqXuyLD8njTrbRhLgbC9QrKrS
+M1F2fSTxVqPtZDlDMwjNR04xHA/fKh8bXXyTMqOHNJTHHNhbh3McdURjAoGBANkU
+1hqfnw7+aXncJ9bjysr1ZWbqOE5Nd8AFgfwaKuGTTVX2NsUQnCMWdOp+wFak40JH
+PKWkJNdBG+ex0H9JNQsTK3X5PBMAS8AfX0GrKeuwKWA6erytVTqjOfLYcdp5+z9s
+8DtVCxDuVsM+i4X8UqIGOlvGbtKEVokHPFXP1q/dAoGAcHg5YX7WEehCgCYTzpO+
+xysX8ScM2qS6xuZ3MqUWAxUWkh7NGZvhe0sGy9iOdANzwKw7mUUFViaCMR/t54W1
+GC83sOs3D7n5Mj8x3NdO8xFit7dT9a245TvaoYQ7KgmqpSg/ScKCw4c3eiLava+J
+3btnJeSIU+8ZXq9XjPRpKwUCgYA7z6LiOQKxNeXH3qHXcnHok855maUj5fJNpPbY
+iDkyZ8ySF8GlcFsky8Yw6fWCqfG3zDrohJ5l9JmEsBh7SadkwsZhvecQcS9t4vby
+9/8X4jS0P8ibfcKS4nBP+dT81kkkg5Z5MohXBORA7VWx+ACohcDEkprsQ+w32xeD
+qT1EvQKBgQDKm8ws2ByvSUVs9GjTilCajFqLJ0eVYzRPaY6f++Gv/UVfAPV4c+S0
+kAWpXbv5tbkkzbS0eaLPTKgLzavXtQoTtKwrjpolHKIHUz6Wu+n4abfAIRFubOdN
+/+aLoRQ0yBDRbdXMsZN/jvY44eM+xRLdRVyMmdPtP8belRi2E2aEzA==
+-----END RSA PRIVATE KEY-----
+bandit13@bandit:~$
+
+
+#apparently sshkey.private is myy ssh key to login as bandit14
+
+man chmod
+#apparently
+chmod 600 sshkey.private
+#sets the keyto be private
+
+man ssh
+ -i identity_file
+               Selects a file from which the identity (private key) for public  key  authentica‐
+               tion  is  read. 
+
+#had no idea
+
+ssh -i sshkey.private bandit14@localhost "cat /etc/bandit_pass/ban
+
